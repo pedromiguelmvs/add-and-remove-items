@@ -4,16 +4,23 @@ var ulElement = document.querySelector('ul[id=lista]');
 var removeBtnElement = document.querySelector('button[name=excluir]');
 
 function addItem(){
-    var liElement = document.createElement('li');
-    var text = document.createTextNode(inputElement.value);
-    liElement.appendChild(text);
-    ulElement.appendChild(liElement);
-    inputElement.value = "";
+    if (inputElement.value == "") {
+        alert('Digite um valor válido!');
+    } else {
+        var liElement = document.createElement('li');
+        var text = document.createTextNode(inputElement.value);
+        liElement.appendChild(text);
+        ulElement.appendChild(liElement);
+        inputElement.value = "";
+    }
 }
 
 function removeItem(){
     var liElement = document.querySelector('ul[id=lista] li');
-    var removeElement = liElement.parentNode.removeChild(liElement);
+    // var removeElement = liElement.parentNode.removeChild(liElement);
+    if (liElement.parentNode){
+        liElement.parentNode.removeChild(liElement);
+    }
 }
 
 removeBtnElement.onclick = function(){
@@ -26,9 +33,10 @@ btnElement.onclick = function(){
 
 inputElement.addEventListener('keyup', function(e){
   var key = e.which || e.keyCode;
+  var liElement = document.querySelector('ul[id=lista] li');
   if (key == 13) {
-    return addItem();
+        return addItem();
   } else if (key == 8 && inputElement.value == ""){
-      return removeItem();
+        return removeItem();
   }
 });
