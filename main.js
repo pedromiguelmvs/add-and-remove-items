@@ -2,11 +2,9 @@ var inputElement = document.querySelector('input[name=input]');
 var btnElement = document.querySelector('button[name=botao]');
 var ulElement = document.querySelector('ul[id=lista]');
 var removeBtnElement = document.querySelector('button[name=excluir]');
-var referencia = document.querySelector('il[id=item_lista]');
 
 function addItem(){
     var liElement = document.createElement('li');
-    liElement.getAttribute('id', 'item_lista');
     var text = document.createTextNode(inputElement.value);
     liElement.appendChild(text);
     ulElement.appendChild(liElement);
@@ -14,8 +12,8 @@ function addItem(){
 }
 
 function removeItem(){
-    // var referencia = referencia.nodeType();
-    var removeElement = document.removeChild(referencia);
+    var liElement = document.querySelector('ul[id=lista] li');
+    var removeElement = liElement.parentNode.removeChild(liElement);
 }
 
 removeBtnElement.onclick = function(){
@@ -26,6 +24,11 @@ btnElement.onclick = function(){
     return addItem();
 }
 
-// removeBtnElement.onclick = function(){
-//     var ulElement = document.removeChild(liElement);
-// }
+inputElement.addEventListener('keyup', function(e){
+  var key = e.which || e.keyCode;
+  if (key == 13) {
+    return addItem();
+  } else if (key == 8 && inputElement.value == ""){
+      return removeItem();
+  }
+});
