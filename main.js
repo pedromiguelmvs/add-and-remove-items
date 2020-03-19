@@ -17,10 +17,10 @@ function addItem(){
 
 function removeItem(){
     var liElement = document.querySelector('ul[id=lista] li');
-    // var removeElement = liElement.parentNode.removeChild(liElement);
-    if (liElement.parentNode){
-        liElement.parentNode.removeChild(liElement);
-    }
+    ulElement.removeChild(liElement);
+    // if (liElement.parentNode){
+    //     liElement.parentNode.removeChild(liElement);
+    // }
 }
 
 removeBtnElement.onclick = function(){
