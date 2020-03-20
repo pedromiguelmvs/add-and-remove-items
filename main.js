@@ -12,15 +12,21 @@ function addItem(){
         liElement.appendChild(text);
         ulElement.appendChild(liElement);
         inputElement.value = "";
+        saveToStorage();
     }
 }
 
 function removeItem(){
     var liElement = document.querySelector('ul[id=lista] li');
     ulElement.removeChild(liElement);
+    saveToStorage();
     // if (liElement.parentNode){
     //     liElement.parentNode.removeChild(liElement);
     // }
+}
+
+function saveToStorage(){
+    localStorage.setItem('list_todos', JSON.stringify(ulElement.children));
 }
 
 removeBtnElement.onclick = function(){
